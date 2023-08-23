@@ -1,0 +1,11 @@
+{
+    "name": "배민재9",
+    "age": 26,
+    "height": 180.5,
+    "isFemale": false,
+    "favoriteFoodList": [
+        "치킨",
+        "피자",
+        "햄버거"
+    ]
+}
