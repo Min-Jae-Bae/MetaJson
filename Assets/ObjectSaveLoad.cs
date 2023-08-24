@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -18,12 +17,6 @@ public class SaveInfo
     public Vector3 pos;
     public Quaternion rot;
     public Vector3 scale;
-}
-
-[System.Serializable]
-public class JsonList
-{
-    public List<SaveInfo> data;
 }
 
 public class ObjectSaveLoad : MonoBehaviour
@@ -70,7 +63,7 @@ public class ObjectSaveLoad : MonoBehaviour
             }
 
             //saveInfoList을 이용해서 JsonData로 만들자.
-            JsonList jsonList = new JsonList();
+            JsonList<SaveInfo> jsonList = new JsonList<SaveInfo>();
             jsonList.data = saveInfoList;
             string jsonData = JsonUtility.ToJson(jsonList, true);
             print(jsonData);
@@ -104,7 +97,7 @@ public class ObjectSaveLoad : MonoBehaviour
             string jsonData = Encoding.UTF8.GetString(byteData);
 
             //jsonData를 이용해서 jsonList에 Parsing 하자
-            JsonList jsonList = JsonUtility.FromJson<JsonList>(jsonData);
+            JsonList<SaveInfo> jsonList = JsonUtility.FromJson<JsonList<SaveInfo>>(jsonData);
 
             //JsonList.data의 갯수 만큼 오브젝트를 생성하자.
             for (int i = 0; i < jsonList.data.Count; i++)
